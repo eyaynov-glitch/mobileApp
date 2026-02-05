@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function ynovEmail() { return signedIn() && request.auth.token.email.matches('.*@ynov\\.com$'); }
+    match /Student_Detail/{id} {
+      allow read, write: if ynovEmail();
+    }
+    match /Faculty_Detail/{id} {
+      allow read, write: if ynovEmail();
+    }
+    match /Events/{id} {
+      allow read, write: if ynovEmail();
+    }
+    match /Clubs/{id} {
+      allow read, write: if ynovEmail();
+    }
+    match /Messages/{id} {
+      allow read, write: if ynovEmail();
+    }
+    match /{document=**} {
+      allow read, write: if ynovEmail();
+    }
+  }
+}
