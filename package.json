@@ -1,0 +1,11 @@
+{
+  "name": "ycl-seed-tools",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "seed": "node scripts/seed_firestore.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.6.0"
+  }
+}
